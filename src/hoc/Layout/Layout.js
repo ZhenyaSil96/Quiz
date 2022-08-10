@@ -24,6 +24,8 @@ class Layout extends React.Component{
         })
     }
 
+    addContentTest = () => {}/////
+
     menuCloseHandler = () => {
         this.setState({
             menu: false
