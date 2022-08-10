@@ -24,13 +24,14 @@ class Layout extends React.Component{
         })
     }
 
-    addContentTest = () => {}/////
+    
 
     menuCloseHandler = () => {
         this.setState({
             menu: false
         })
     }
+
     render(){
         return(
             <div className={classes.Layout}>
