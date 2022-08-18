@@ -2,14 +2,22 @@ import React from "react";
 import classes from './Drawer.module.css'
 import Backdrop from "../../UI/Backdrop/Backdrop";
 
-const links = [1,2,3]
+const links = [
+    {path:'/', lable: 'Список', exact:true},
+    {path:'/auth', lable:'Aвторизация', exact: false},
+    {path:'/quiz-creator', lable:'Создать тест', exact: false}
+]
 
 class Drawer extends React.Component {
     renderlinks () {
         return links.map((link, index) => {
             return (
                 <li key={index}>
-                    <a >Link {link}</a>
+                    <a 
+                    href={link.path}
+                    exact={link.exact}
+                    activeClassName = {classes.active}
+                    > {link.lable}</a>
                 </li>
             )
         })
