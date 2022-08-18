@@ -101,6 +101,11 @@ retryHandler = () => {
     })
 }
 
+comonentDidMount() {
+    console.log(' Quiz id', this.props.match.id)
+}
+
+
     render() {
         return(
             <div className={classes.Quiz}>
