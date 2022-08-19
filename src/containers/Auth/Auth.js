@@ -14,6 +14,7 @@ const validateEmail = (email) => {
 class Auth extends React.Component{
 
 state = {
+    isFormValid: false,
     formControls : {
         email: {
             value: '',
@@ -87,9 +88,15 @@ onChangeHandler = (event, controlName) => {
     control.valid = this.validateControl(control.value, control.validation)
 
     formControls[controlName] = control 
+
+    let isFormValid = true
+
+    Object.keys(formControls).forEach(name => {
+        isFormValid = formControls[name].valid && isFormValid
+    })
     
     this.setState({
-        formControls
+        formControls, isFormValid
     })
 }
 
@@ -132,8 +139,10 @@ renderInputs () {
                         {this.renderInputs()}
 
 
-                        <Button type='success' 
+                        <Button 
+                        type='success' 
                         onClick={this.loginHandler}
+                        disabled = {!this.state.isFormValid}
                         >
                             Войти
                         </Button>
@@ -141,6 +150,7 @@ renderInputs () {
                         <Button 
                         type='primary'
                         onClick={this.registerHandler}
+                        disabled = {!this.state.isFormValid}
                         >
                             Зарегистрироваться 
                         </Button>
