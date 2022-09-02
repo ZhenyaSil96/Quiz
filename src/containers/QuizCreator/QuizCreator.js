@@ -47,6 +47,12 @@ function createOptionControl(number) {
     }
   
     changeHandler = (value, controlName) => {
+      const formControls = {...this.state.formControls}
+      const control = {...formControls[controlName]}
+
+      control.touched = true
+      control.value = value
+      // control.valid = 
   
     }
   
