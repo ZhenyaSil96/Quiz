@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import classes from './QuizCreator.module.css'
 import Button from '../../components/UI/Button'
-import {creatControl} from '../../form/formFramework'
+import {creatControl, validate, validateForm} from '../../form/formFramework'
 import Input from '../../components/UI/Input/input'
 import Select from '../../components/UI/Select/Select'
 
@@ -30,6 +30,7 @@ function createOptionControl(number) {
   
     state = {
       quiz: [],
+      isFormValid: false,
       rightAnswerId: 1,
       formControls: createFormControls()
     }
@@ -38,8 +39,8 @@ function createOptionControl(number) {
       event.preventDefault()
     }
   
-    addQuestionHandler = () => {
-  
+    addQuestionHandler = event => {
+      event.preventDefault()
     }
   
     createQuizHandler = () => {
@@ -50,9 +51,17 @@ function createOptionControl(number) {
       const formControls = {...this.state.formControls}
       const control = {...formControls[controlName]}
 
+     
       control.touched = true
       control.value = value
-      // control.valid = 
+      control.valid = validate(control.value, control.validation)
+  
+      formControls[controlName] = control
+  
+      this.setState({
+        formControls,
+        isFormValid: validateForm(formControls)
+      })
   
     }
   
